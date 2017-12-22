@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace test_Service_Skidata
+namespace SkiData.CP.FormatService.CustomerTestClient
 {
     static class Program
     {

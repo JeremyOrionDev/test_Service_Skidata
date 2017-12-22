@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/SkiData.CP.FormatService.Contracts" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SkiData.CP.FormatService.Contracts" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfFormatTypeAccountData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FormatTypeAccountData" nillable="true" type="tns:FormatTypeAccountData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFormatTypeAccountData" nillable="true" type="tns:ArrayOfFormatTypeAccountData" />
+  <xs:complexType name="FormatTypeAccountData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Balance" type="xs:int" />
+      <xs:element minOccurs="0" name="Bookings" nillable="true" type="tns:ArrayOfBookingData" />
+      <xs:element minOccurs="0" name="FormatTypeId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FormatTypeAccountData" nillable="true" type="tns:FormatTypeAccountData" />
+  <xs:complexType name="ArrayOfBookingData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BookingData" nillable="true" type="tns:BookingData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBookingData" nillable="true" type="tns:ArrayOfBookingData" />
+  <xs:complexType name="BookingData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DateTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Quantity" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BookingData" nillable="true" type="tns:BookingData" />
+  <xs:complexType name="ArrayOfBatchInfoData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BatchInfoData" nillable="true" type="tns:BatchInfoData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBatchInfoData" nillable="true" type="tns:ArrayOfBatchInfoData" />
+  <xs:complexType name="BatchInfoData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BatchId" type="ser:guid" />
+      <xs:element minOccurs="0" name="FormatTypeId" type="ser:guid" />
+      <xs:element minOccurs="0" name="IsFinished" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Placed" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Quantity" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BatchInfoData" nillable="true" type="tns:BatchInfoData" />
+  <xs:complexType name="ArrayOfFormatTypeData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FormatTypeData" nillable="true" type="tns:FormatTypeData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFormatTypeData" nillable="true" type="tns:ArrayOfFormatTypeData" />
+  <xs:complexType name="FormatTypeData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DoSetDtaFlag" type="xs:boolean" />
+      <xs:element minOccurs="0" name="FormatTypeId" type="ser:guid" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FormatTypeData" nillable="true" type="tns:FormatTypeData" />
+  <xs:complexType name="ArrayOfFormattedData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FormattedData" nillable="true" type="tns:FormattedData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFormattedData" nillable="true" type="tns:ArrayOfFormattedData" />
+  <xs:complexType name="FormattedData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Blocks" nillable="true" type="tns:ArrayOfBlockData" />
+      <xs:element minOccurs="0" name="Dsf" nillable="true" type="xs:short" />
+      <xs:element minOccurs="0" name="Uid" type="xs:unsignedLong" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FormattedData" nillable="true" type="tns:FormattedData" />
+  <xs:complexType name="ArrayOfBlockData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BlockData" nillable="true" type="tns:BlockData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBlockData" nillable="true" type="tns:ArrayOfBlockData" />
+  <xs:complexType name="BlockData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BlockNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="BlockValue" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BlockData" nillable="true" type="tns:BlockData" />
+  <xs:complexType name="ArrayOfContingentData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ContingentData" nillable="true" type="tns:ContingentData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContingentData" nillable="true" type="tns:ArrayOfContingentData" />
+  <xs:complexType name="ContingentData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Balance" type="xs:int" />
+      <xs:element minOccurs="0" name="FormatTypeId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ContingentData" nillable="true" type="tns:ContingentData" />
+</xs:schema>

@@ -1,0 +1,303 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FormattingService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="soapFormattingEndpoint_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+            <sp:IncludeTimestamp />
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <sp:EndorsingSupportingTokens xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:SecureConversationToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+              <wsp:Policy>
+                <sp:BootstrapPolicy>
+                  <wsp:Policy>
+                    <sp:SignedParts>
+                      <sp:Body />
+                      <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+                    </sp:SignedParts>
+                    <sp:EncryptedParts>
+                      <sp:Body />
+                    </sp:EncryptedParts>
+                    <sp:TransportBinding>
+                      <wsp:Policy>
+                        <sp:TransportToken>
+                          <wsp:Policy>
+                            <sp:HttpsToken RequireClientCertificate="false" />
+                          </wsp:Policy>
+                        </sp:TransportToken>
+                        <sp:AlgorithmSuite>
+                          <wsp:Policy>
+                            <sp:Basic256 />
+                          </wsp:Policy>
+                        </sp:AlgorithmSuite>
+                        <sp:Layout>
+                          <wsp:Policy>
+                            <sp:Strict />
+                          </wsp:Policy>
+                        </sp:Layout>
+                        <sp:IncludeTimestamp />
+                      </wsp:Policy>
+                    </sp:TransportBinding>
+                    <sp:EndorsingSupportingTokens>
+                      <wsp:Policy>
+                        <sp:X509Token sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+                          <wsp:Policy>
+                            <sp:RequireThumbprintReference />
+                            <sp:WssX509V3Token10 />
+                          </wsp:Policy>
+                        </sp:X509Token>
+                        <sp:SignedParts>
+                          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+                        </sp:SignedParts>
+                      </wsp:Policy>
+                    </sp:EndorsingSupportingTokens>
+                    <sp:Wss11>
+                      <wsp:Policy>
+                        <sp:MustSupportRefThumbprint />
+                      </wsp:Policy>
+                    </sp:Wss11>
+                    <sp:Trust10>
+                      <wsp:Policy>
+                        <sp:MustSupportIssuedTokens />
+                        <sp:RequireClientEntropy />
+                        <sp:RequireServerEntropy />
+                      </wsp:Policy>
+                    </sp:Trust10>
+                  </wsp:Policy>
+                </sp:BootstrapPolicy>
+              </wsp:Policy>
+            </sp:SecureConversationToken>
+          </wsp:Policy>
+        </sp:EndorsingSupportingTokens>
+        <sp:Wss11 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy />
+        </sp:Wss11>
+        <sp:Trust10 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:MustSupportIssuedTokens />
+            <sp:RequireClientEntropy />
+            <sp:RequireServerEntropy />
+          </wsp:Policy>
+        </sp:Trust10>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/SkiData.CP.FormatService.Contracts" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IFormattingService_GetAccountStatement_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAccountStatement" />
+  </wsdl:message>
+  <wsdl:message name="IFormattingService_GetAccountStatement_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAccountStatementResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFormattingService_GetAllBatches_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllBatches" />
+  </wsdl:message>
+  <wsdl:message name="IFormattingService_GetAllBatches_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllBatchesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFormattingService_GetAvailableFormatTypes_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAvailableFormatTypes" />
+  </wsdl:message>
+  <wsdl:message name="IFormattingService_GetAvailableFormatTypes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAvailableFormatTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFormattingService_GetBatchData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBatchData" />
+  </wsdl:message>
+  <wsdl:message name="IFormattingService_GetBatchData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBatchDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFormattingService_GetContingents_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetContingents" />
+  </wsdl:message>
+  <wsdl:message name="IFormattingService_GetContingents_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetContingentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFormattingService_GetSingleUidData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSingleUidData" />
+  </wsdl:message>
+  <wsdl:message name="IFormattingService_GetSingleUidData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSingleUidDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFormattingService_GetVersion_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVersion" />
+  </wsdl:message>
+  <wsdl:message name="IFormattingService_GetVersion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFormattingService_IsBatchFinished_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsBatchFinished" />
+  </wsdl:message>
+  <wsdl:message name="IFormattingService_IsBatchFinished_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsBatchFinishedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFormattingService_PlaceUidBatch_InputMessage">
+    <wsdl:part name="parameters" element="tns:PlaceUidBatch" />
+  </wsdl:message>
+  <wsdl:message name="IFormattingService_PlaceUidBatch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PlaceUidBatchResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IFormattingService">
+    <wsdl:operation name="GetAccountStatement">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFormattingService/GetAccountStatement" message="tns:IFormattingService_GetAccountStatement_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFormattingService/GetAccountStatementResponse" message="tns:IFormattingService_GetAccountStatement_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllBatches">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFormattingService/GetAllBatches" message="tns:IFormattingService_GetAllBatches_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFormattingService/GetAllBatchesResponse" message="tns:IFormattingService_GetAllBatches_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableFormatTypes">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFormattingService/GetAvailableFormatTypes" message="tns:IFormattingService_GetAvailableFormatTypes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFormattingService/GetAvailableFormatTypesResponse" message="tns:IFormattingService_GetAvailableFormatTypes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBatchData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFormattingService/GetBatchData" message="tns:IFormattingService_GetBatchData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFormattingService/GetBatchDataResponse" message="tns:IFormattingService_GetBatchData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetContingents">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFormattingService/GetContingents" message="tns:IFormattingService_GetContingents_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFormattingService/GetContingentsResponse" message="tns:IFormattingService_GetContingents_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSingleUidData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFormattingService/GetSingleUidData" message="tns:IFormattingService_GetSingleUidData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFormattingService/GetSingleUidDataResponse" message="tns:IFormattingService_GetSingleUidData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVersion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFormattingService/GetVersion" message="tns:IFormattingService_GetVersion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFormattingService/GetVersionResponse" message="tns:IFormattingService_GetVersion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsBatchFinished">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFormattingService/IsBatchFinished" message="tns:IFormattingService_IsBatchFinished_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFormattingService/IsBatchFinishedResponse" message="tns:IFormattingService_IsBatchFinished_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PlaceUidBatch">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFormattingService/PlaceUidBatch" message="tns:IFormattingService_PlaceUidBatch_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFormattingService/PlaceUidBatchResponse" message="tns:IFormattingService_PlaceUidBatch_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="soapFormattingEndpoint" type="tns:IFormattingService">
+    <wsp:PolicyReference URI="#soapFormattingEndpoint_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAccountStatement">
+      <soap12:operation soapAction="http://tempuri.org/IFormattingService/GetAccountStatement" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllBatches">
+      <soap12:operation soapAction="http://tempuri.org/IFormattingService/GetAllBatches" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableFormatTypes">
+      <soap12:operation soapAction="http://tempuri.org/IFormattingService/GetAvailableFormatTypes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBatchData">
+      <soap12:operation soapAction="http://tempuri.org/IFormattingService/GetBatchData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContingents">
+      <soap12:operation soapAction="http://tempuri.org/IFormattingService/GetContingents" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSingleUidData">
+      <soap12:operation soapAction="http://tempuri.org/IFormattingService/GetSingleUidData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVersion">
+      <soap12:operation soapAction="http://tempuri.org/IFormattingService/GetVersion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsBatchFinished">
+      <soap12:operation soapAction="http://tempuri.org/IFormattingService/IsBatchFinished" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PlaceUidBatch">
+      <soap12:operation soapAction="http://tempuri.org/IFormattingService/PlaceUidBatch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="FormattingService">
+    <wsdl:port name="soapFormattingEndpoint" binding="tns:soapFormattingEndpoint">
+      <soap12:address location="https://localhost:10232/" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>https://localhost:10232/</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

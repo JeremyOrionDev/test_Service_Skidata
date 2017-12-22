@@ -6,11 +6,12 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{A7C6C8D1-7E0B-4ABA-9F60-CBDCD113ABDC}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>test_Service_Skidata</RootNamespace>
+    <RootNamespace>SkiData.CP.FormatService.CustomerTestClient</RootNamespace>
     <AssemblyName>test_Service_Skidata</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -34,6 +35,9 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,14 +49,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connected Services\SkiDataFormatingServiceSingle\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="IServiceSkiData.cs" />
+    <Compile Include="outils.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceSkiData.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -61,7 +76,17 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Certificates\Format.Service_server.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Connected Services\SkiDataFormatingServiceSingle\FormattingService.wsdl" />
+    <None Include="Properties\DataSources\SkiData.CP.FormatService.Contracts.BatchInfoData.datasource" />
+    <None Include="Properties\DataSources\SkiData.CP.FormatService.Contracts.ContingentData.datasource" />
+    <None Include="Properties\DataSources\SkiData.CP.FormatService.Contracts.FormattedData.datasource" />
+    <None Include="Properties\DataSources\SkiData.CP.FormatService.Contracts.FormatTypeAccountData.datasource" />
+    <None Include="Properties\DataSources\SkiData.CP.FormatService.Contracts.FormatTypeData.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -74,6 +99,34 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\SkiDataFormatingServiceSingle\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\SkiDataFormatingServiceSingle\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\SkiDataFormatingServiceSingle\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\SkiDataFormatingServiceSingle\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\TestClient_VS2012\SkiData.CP.FormatService.CustomerTestClient.csproj">
+      <Project>{392ae8dd-f78f-4f67-b45b-fdfbdf24e386}</Project>
+      <Name>SkiData.CP.FormatService.CustomerTestClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClientDLL_VS2012\SkiData.CP.FormatService.Client.csproj">
+      <Project>{6a03b01b-d7f1-451f-a268-7328aca7748a}</Project>
+      <Name>SkiData.CP.FormatService.Client</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
